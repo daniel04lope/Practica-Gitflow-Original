@@ -8,7 +8,7 @@ $inicial   = $historial[0] ?? 1;
 
 // Qué casillas (1-9) de la cuadrícula 3x3 se pintan en cada cara
 $pips = [
-
+    1 => [5],
     2 => [1, 9],
     3 => [1, 5, 9],
     4 => [1, 3, 7, 9],
