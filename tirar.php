@@ -19,7 +19,7 @@ if ($accion === 'reiniciar') {
     $_SESSION['historial'] = [];
     $_SESSION['total']     = 0;
 } else {
-    $valor = random_int(1, 66); // aleatorio de verdad, hecho en el servidor
+    $valor = random_int(1, 6); // aleatorio de verdad, hecho en el servidor
     array_unshift($_SESSION['historial'], $valor);
     $_SESSION['historial'] = array_slice($_SESSION['historial'], 0, 10);
     $_SESSION['total']++;
