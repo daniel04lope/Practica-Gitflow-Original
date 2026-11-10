@@ -32,7 +32,7 @@ $pips = [
             <div class="dado" id="dado" data-inicial="<?= $inicial ?>" aria-hidden="true">
                 <?php for ($cara = 1; $cara <= 6; $cara++): ?>
                     <div class="cara cara-<?= $cara ?>">
-                        <?php for ($i = 1; $i <= 9; $i++): ?>
+                        <?php for ($i = 1; $i <= 8; $i++): ?>
                             <span class="pip<?= in_array($i, $pips[$cara], true) ? ' on' : '' ?>"></span>
                         <?php endfor; ?>
                     </div>
