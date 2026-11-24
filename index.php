@@ -1,3 +1,4 @@
+
 <?php
 declare(strict_types=1);
 session_start();
@@ -5,6 +6,18 @@ session_start();
 $historial = $_SESSION['historial'] ?? [];
 $total     = $_SESSION['total'] ?? 0;
 $inicial   = $historial[0] ?? 1;
+
+// Estadísticas de las últimas 10 tiradas
+$ultimas10 = array_slice($historial, 0, 10);
+$estadisticas = array_fill(1, 6, 0);
+
+foreach ($ultimas10 as $valor) {
+    if (isset($estadisticas[$valor])) {
+        $estadisticas[$valor]++;
+    }
+}
+
+$totalEstadisticas = count($ultimas10);
 
 // Qué casillas (1-9) de la cuadrícula 3x3 se pintan en cada cara
 $pips = [
@@ -56,6 +69,33 @@ $pips = [
             </ul>
             <p class="vacio" id="vacio" <?= $historial ? 'hidden' : '' ?>>Todavía no has tirado nada.</p>
             <button class="enlace" id="reiniciar" type="button">Borrar historial</button>
+        </section>
+
+        <section class="estadisticas">
+            <h2>Estadísticas <small>(últimas 10 tiradas)</small></h2>
+
+            <div class="estadisticas-grid">
+                <?php for ($numero = 1; $numero <= 6; $numero++): ?>
+                    <?php
+                    $cantidad = $estadisticas[$numero];
+                    $porcentaje = $totalEstadisticas > 0
+                        ? round(($cantidad / $totalEstadisticas) * 100)
+                        : 0;
+                    ?>
+                    <div class="estadistica">
+                        <span class="estadistica-numero"><?= $numero ?></span>
+                        <span class="estadistica-cantidad"><?= $cantidad ?> veces</span>
+                        <div class="estadistica-barra">
+                            <div class="estadistica-progreso" style="width: <?= $porcentaje ?>%"></div>
+                        </div>
+                        <span class="estadistica-porcentaje"><?= $porcentaje ?>%</span>
+                    </div>
+                <?php endfor; ?>
+            </div>
+
+            <p class="estadisticas-info">
+                <?= $totalEstadisticas ?> de 10 tiradas analizadas
+            </p>
         </section>
     </main>
 
