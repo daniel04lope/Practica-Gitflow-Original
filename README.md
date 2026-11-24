@@ -34,3 +34,5 @@ php -S localhost:8000
 ```
 
 y abre [http://localhost:8000](http://localhost:8000) en el navegador.
+
+# Versión 1.1.0
